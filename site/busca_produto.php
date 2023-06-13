@@ -121,7 +121,7 @@ if (isset($_POST['buscar'])) {
             echo '
             <div class="col-md-4">
                 <div class="card mb-4">
-                    <img class="card-img-top" src="data:;base64,'.$imagem.'" alt="Imagem do Produto">
+                    <img class="card-img-top" style="max-width: 100%; max-height: 200px;" src="data:;base64,'.$imagem.'" alt="Imagem do Produto">
                     <div class="card-body">
                         <h5 class="card-title">'.$nome.'</h5>
                         <p class="card-text">Código: '.$codigo.'</p>

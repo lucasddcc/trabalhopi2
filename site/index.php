@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- CSS Personalizado -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/style_produto.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 </head>
 
 <body>
@@ -29,7 +30,7 @@
                         <a class="nav-link" href="#">Página Principal</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Login</a>
+                        <a class="nav-link" href="login.php">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="cadastro_cliente.php">Cadastro</a>
@@ -59,54 +60,88 @@
             </div>
         </nav>
 
-        <!-- Formulário de Login -->
-        <div class="container">
-            <h2>Login</h2>
-            <form id="login-form" action="login.php" method="post">
-                <div class="form-group">
-                    <label for="username">Email:</label>
-                    <input type="text" class="form-control" id="username" placeholder="Digite o nome de usuário"
-                        name="username">
-                </div>
-                <div class="form-group">
-                    <label for="password">Senha:</label>
-                    <input type="password" class="form-control" id="password" placeholder="Digite a senha"
-                        name="password">
-                </div>
-                <button type="submit" class="btn btn-primary">Entrar</button>
-                <div class="alert alert-danger mt-3" id="login-error" style="display: none;">Nome de usuário ou senha incorretos</div>
+         <!--CONTEUDO PAGINA INICIAL-->
+         <div class="container">
+            <h1>Produtos Disponíveis</h1>
 
-            </form>
+            <div class="product-grid">
+                <?php
+
+                // Configurações do banco de dados
+                $servidor = "localhost";
+                $usuario = "root";
+                $senha = "admin";
+                $banco = "cadastro_produto";
+    
+                // Conecta ao banco de dados
+                $conexao = mysqli_connect($servidor, $usuario, $senha, $banco);
+    
+                // Verifica se a conexão foi bem sucedida
+                if (!$conexao) {
+                    die("Conexão falhou: " . mysqli_connect_error());
+                }
+    
+                // Query para buscar todos os produtos
+                $sql = "SELECT * FROM produto";
+    
+                // Executa a query
+                $resultado = mysqli_query($conexao, $sql);
+    
+                // Verifica se houve resultados
+                if (mysqli_num_rows($resultado) > 0) {
+                    while ($row = mysqli_fetch_assoc($resultado)) {
+                        echo "<div class='product-item'>";
+                        echo "<img src='" . $row['imagem'] . "' alt='" . $row['nome'] . "'>";
+                        echo "<h3>" . $row['nome'] . "</h3>";
+                        echo "<p>" . $row['descricao'] . "</p>";
+                        echo "</div>";
+                    }
+                } else {
+                    echo "Nenhum produto cadastrado.";
+                }
+    
+                // Fecha a conexão com o banco de dados
+                mysqli_close($conexao);
+                ?>
+            </div>
         </div>
 
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Informações de Contato</h4>
+                            <p>Endereço: Avenida da Imprensa, 1137 - Ribeirão Preto - São Paulo</p>
+                            <p>Telefone: (16) 3826-4002</p>
+                            <p>Email: exemplo@email.com</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Links Úteis</h4>
+                            <ul>
+                                <li><a href="#">Página Inicial</a></li>
+                                <li><a href="#">Produtos</a></li>
+                                <li><a href="#">Sobre Nós</a></li>
+                                <li><a href="#">Contato</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>&copy; 2023 Loja de Tecnologias Tech Store. Todos os direitos reservados.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
         <!-- Scripts JavaScript do Bootstrap -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-        <script>
-            // Seleciona o formulário de login
-            const form = document.querySelector('#login-form');
-
-            // Adiciona um listener para o evento submit do formulário
-            form.addEventListener('submit', (event) => {
-                // Impede o envio do formulário
-                event.preventDefault();
-
-                // Seleciona os campos de usuário e senha
-                const username = form.querySelector('#username').value;
-                const password = form.querySelector('#password').value;
-
-                // Verifica se os campos estão preenchidos
-                if (!username || !password) {
-                    // Exibe mensagem de erro se algum campo estiver vazio
-                    document.querySelector('#login-error').style.display = 'block';
-                } else {
-                    // Envia o formulário se os campos estiverem preenchidos
-                    form.submit();
-                }
-            });
-        </script>
 </body>
+
 </html>
