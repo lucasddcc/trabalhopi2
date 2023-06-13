@@ -68,8 +68,7 @@
         <div class="container mt-4">
             <h2>Buscar Produto</h2>
 
-            <form id="cadastro_produto-form" action="busca_produto.php" method="POST"
-                onsubmit="return validarCadastro()">
+            <form id="cadastro_produto-form" action="busca_produto.php" method="POST">
 
                 <div class="form-group">
                     <input type="text" name="buscar" placeholder="Digite o nome ou código do produto">
@@ -109,14 +108,29 @@ if (isset($_POST['buscar'])) {
 
     // Verifica se houve resultados
     if (mysqli_num_rows($resultado) > 0) {
-        // Exibe os resultados
+        // Itera sobre os resultados
         while ($row = mysqli_fetch_assoc($resultado)) {
-            echo '<div class="result-container">';
-            echo '<h3>Nome: ' . $row["nome"] . '</h3>';
-            echo '<p>Código: ' . $row["codigo"] . '</p>';
-            echo '<p>Descrição: ' . $row["descricao"] . '</p>';
-            echo '<p>Quantidade: ' . $row["quantidade"] . '</p>';
-            echo '</div>';
+            $nome = $row['nome'];
+            $codigo = $row['codigo'];
+            $descricao = $row['descricao'];
+            $quantidade = $row['quantidade'];
+            $preco = $row['preco'];
+            $imagem = base64_encode($row['imagem']);
+    
+            // Exibe o produto
+            echo '
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img class="card-img-top" src="data:;base64,'.$imagem.'" alt="Imagem do Produto">
+                    <div class="card-body">
+                        <h5 class="card-title">'.$nome.'</h5>
+                        <p class="card-text">Código: '.$codigo.'</p>
+                        <p class="card-text">'.$descricao.'</p>
+                        <p class="card-text">Quantidade: '.$quantidade.'</p>
+                        <p class="card-text">Preço: '.$preco.'</p>
+                    </div>
+                </div>
+            </div>';
         }
     } else {
         echo '<p class="no-results">Nenhum resultado encontrado.</p>';

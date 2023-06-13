@@ -86,6 +86,7 @@
                 $codigo = $row['codigo'];
                 $descricao = $row['descricao'];
                 $quantidade = $row['quantidade'];
+                $preco = $row['preco'];
                 $imagem = base64_encode($row['imagem']);
 
                 // Exibe o produto
@@ -98,6 +99,7 @@
                             <p class="card-text">Código: '.$codigo.'</p>
                             <p class="card-text">'.$descricao.'</p>
                             <p class="card-text">Quantidade: '.$quantidade.'</p>
+                            <p class="card-text">Preço: '.$preco.'</p>
                         </div>
                     </div>
                 </div>';

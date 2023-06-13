@@ -8,9 +8,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- CSS Personalizado -->
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="style_produto.css">
 
+    <link rel="stylesheet" type="text/css" href="css/style_produto.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="script.js"></script>
 </head>
 
@@ -79,12 +79,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="codigo">Código:</label>
-                    <input type="text" class="form-control" id="codigo" placeholder="Digite o código do produto"
-                        name="codigo">
-                </div>
-
-                <div class="form-group">
                     <label for="desc">Descrição:</label>
                     <input type="text" class="form-control" id="descricao" placeholder="Digite a descrição do produto"
                         name="descricao">
@@ -94,6 +88,12 @@
                     <label for="qnt">Quantidade:</label>
                     <input type="number" class="form-control" id="quantidade" placeholder="Digite a quantidade"
                         name="quantidade">
+                </div>
+
+                <div class="form-group">
+                    <label for="qnt">Preço:</label>
+                    <input type="text" class="form-control" id="preco" placeholder="Digite o preço do produto"
+                        name="preco">
                 </div>
 
                 <div class="form-group">
@@ -112,46 +112,47 @@
 
 </html>
 <?php
-// Obtém os valores enviados pelo formulário
-$nome = $_POST["nome"];
-$codigo = $_POST["codigo"];
-$descricao = $_POST["descricao"];
-$quantidade = $_POST["quantidade"];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Obtém os valores enviados pelo formulário
+    $nome = isset($_POST["nome"]) ? $_POST["nome"] : "";
+    $descricao = isset($_POST["descricao"]) ? $_POST["descricao"] : "";
+    $quantidade = isset($_POST["quantidade"]) ? $_POST["quantidade"] : "";
+    $preco = isset($_POST["preco"]) ? $_POST["preco"] : "";
 
-// Configurações do banco de dados
-$servidor = "localhost";
-$usuario = "root";
-$senha = "";
-$banco = "trabalho";
+    // Configurações do banco de dados
+    $servidor = "localhost";
+    $usuario = "root";
+    $senha = "";
+    $banco = "trabalho";
 
-// Conecta ao banco de dados
-$conexao = mysqli_connect($servidor, $usuario, $senha, $banco);
+    // Conecta ao banco de dados
+    $conexao = mysqli_connect($servidor, $usuario, $senha, $banco);
 
-// Verifica se a conexão foi bem sucedida
-if (!$conexao) {
-    die("Conexão falhou: " . mysqli_connect_error());
+    // Verifica se a conexão foi bem sucedida
+    if (!$conexao) {
+        die("Conexão falhou: " . mysqli_connect_error());
+    }
+
+    // Verifica se um arquivo de imagem foi enviado
+    if(isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK){
+        // Lê o arquivo de imagem
+        $imagem = file_get_contents($_FILES['imagem']['tmp_name']);
+        // Escapa os caracteres especiais da imagem
+        $imagem = mysqli_real_escape_string($conexao, $imagem);
+    } else {
+        // Define um valor padrão para a imagem, caso nenhum arquivo tenha sido enviado
+        $imagem = '';
+    }
+
+    // Insere os valores na tabela "produtos" incluindo a imagem
+    $sql = "INSERT INTO produto (nome, descricao, quantidade, preco, imagem) VALUES ('$nome', '$descricao', '$quantidade', '$preco', '$imagem')";
+    if (mysqli_query($conexao, $sql)) {
+        echo "Produto cadastrado!";
+    } else {
+        echo "Erro ao cadastrar produto: " . mysqli_error($conexao);
+    }
+
+    // Fecha a conexão com o banco de dados
+    mysqli_close($conexao);
 }
-
-// Verifica se um arquivo de imagem foi enviado
-if(isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK){
-    // Lê o arquivo de imagem
-    $imagem = file_get_contents($_FILES['imagem']['tmp_name']);
-    // Escapa os caracteres especiais da imagem
-    $imagem = mysqli_real_escape_string($conexao, $imagem);
-} else {
-    // Define um valor padrão para a imagem, caso nenhum arquivo tenha sido enviado
-    $imagem = '';
-}
-
-// Insere os valores na tabela "produtos" incluindo a imagem
-$sql = "INSERT INTO produto (nome, codigo, descricao, quantidade, imagem) VALUES ('$nome', '$codigo', '$descricao', $quantidade, '$imagem')";
-
-if (mysqli_query($conexao, $sql)) {
-    header("Location: lista_produtos.php");
-} else {
-    echo "Erro ao cadastrar produto: " . mysqli_error($conexao);
-}
-
-// Fecha a conexão com o banco de dados
-mysqli_close($conexao);
 ?>
