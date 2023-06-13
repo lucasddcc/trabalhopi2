@@ -1,8 +1,4 @@
 <?php
-// Obtém os dados do formulário de login
-$emailUsuario = $_POST['username'];
-$senhaUsuario = $_POST['password'];
-
 // Configurações do banco de dados
 $servidor = "localhost";
 $usuario = "root";
@@ -17,25 +13,7 @@ if (!$conexao) {
     die("Conexão falhou: " . mysqli_connect_error());
 }
 
-$sql = "SELECT * FROM cliente WHERE email = '$emailUsuario' AND senha = '$senhaUsuario'";
-$result = $conexao->query($sql);
 
-
-// Verifica se o resultado da consulta retornou algum registro
-if ($result->num_rows > 0) {
-    // O login é válido, o usuário está autenticado
-    echo "Login bem-sucedido!";
-
-    // Você pode redirecionar o usuário para outra página ou executar outras ações desejadas aqui
-
-} else {
-    // Login inválido, o usuário não está autenticado
-    echo "Nome de usuário ou senha inválidos.";
-
-    // Você pode redirecionar o usuário de volta para a página de login ou executar outras ações desejadas aqui
-}
-
-// Fecha a conexão com o banco de dados
 mysqli_close($conexao);
 ?>
 
@@ -50,7 +28,6 @@ mysqli_close($conexao);
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- CSS Personalizado -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/style_produto.css">
 </head>
 
 <body>
@@ -59,7 +36,7 @@ mysqli_close($conexao);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div class="container mt-4">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Loja de Eletrônicos</a>
+            <a class="navbar-brand" href="index.php">Loja de Eletrônicos</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -103,7 +80,7 @@ mysqli_close($conexao);
         <!-- Formulário de Login -->
         <div class="container">
             <h2>Login</h2>
-            <form id="login-form" action="login.php" method="post">
+            <form id="login-form" action="testLogin.php" method="post">
                 <div class="form-group">
                     <label for="username">Email:</label>
                     <input type="text" class="form-control" id="username" placeholder="Digite o nome de usuário"
@@ -114,41 +91,47 @@ mysqli_close($conexao);
                     <input type="password" class="form-control" id="password" placeholder="Digite a senha"
                         name="password">
                 </div>
-                <button type="submit" class="btn btn-primary">Entrar</button>
-                <div class="alert alert-danger mt-3" id="login-error" style="display: none;">Nome de usuário ou senha incorretos</div>
+                <button type="submit" name="submit" class="btn btn-primary">Entrar</button>
+                <div class="alert alert-danger mt-3" id="login-error" style="display: none;">Nome de usuário ou senha
+                    incorretos</div>
 
             </form>
         </div>
 
-
+        <!-- FOOTER -->
+        <footer>
+            <div class="container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Informações de Contato</h4>
+                            <p>Endereço: Avenida da Imprensa, 1137 - Ribeirão Preto - São Paulo</p>
+                            <p>Telefone: (16) 3826-4002</p>
+                            <p>Email: exemplo@email.com</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Links Úteis</h4>
+                            <ul>
+                                <li><a href="#">Página Inicial</a></li>
+                                <li><a href="#">Produtos</a></li>
+                                <li><a href="#">Sobre Nós</a></li>
+                                <li><a href="#">Contato</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>&copy; 2023 Loja de Tecnologias Tech Store. Todos os direitos reservados.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
         <!-- Scripts JavaScript do Bootstrap -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-        <script>
-            // Seleciona o formulário de login
-            const form = document.querySelector('#login-form');
-
-            // Adiciona um listener para o evento submit do formulário
-            form.addEventListener('submit', (event) => {
-                // Impede o envio do formulário
-                event.preventDefault();
-
-                // Seleciona os campos de usuário e senha
-                const username = form.querySelector('#username').value;
-                const password = form.querySelector('#password').value;
-
-                // Verifica se os campos estão preenchidos
-                if (!username || !password) {
-                    // Exibe mensagem de erro se algum campo estiver vazio
-                    document.querySelector('#login-error').style.display = 'block';
-                } else {
-                    // Envia o formulário se os campos estiverem preenchidos
-                    form.submit();
-                }
-            });
-        </script>
 </body>
-</html>
 
+</html>

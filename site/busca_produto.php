@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div class="container mt-4">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Loja de Eletrônicos</a>
+            <a class="navbar-brand" href="index.php">Loja de Eletrônicos</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -62,7 +62,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        
+
         <!-- Formulário de Cadastro -->
         <script src="script_cad_produto.js"></script>
         <div class="container mt-4">
@@ -84,7 +84,7 @@
 // Configurações do banco de dados
 $servidor = "localhost";
 $usuario = "root";
-$senha = "";
+$senha = "admin";
 $banco = "trabalho";
 
 // Conecta ao banco de dados
@@ -116,21 +116,23 @@ if (isset($_POST['buscar'])) {
             $quantidade = $row['quantidade'];
             $preco = $row['preco'];
             $imagem = base64_encode($row['imagem']);
-    
+
             // Exibe o produto
             echo '
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <img class="card-img-top" style="max-width: 100%; max-height: 200px;" src="data:;base64,'.$imagem.'" alt="Imagem do Produto">
-                    <div class="card-body">
-                        <h5 class="card-title">'.$nome.'</h5>
-                        <p class="card-text">Código: '.$codigo.'</p>
-                        <p class="card-text">'.$descricao.'</p>
-                        <p class="card-text">Quantidade: '.$quantidade.'</p>
-                        <p class="card-text">Preço: '.$preco.'</p>
-                    </div>
-                </div>
-            </div>';
+                <div class="col-md-4">
+    <div class="card mb-4" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+        <div class="card-body" style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <h5 class="card-title" style="text-align: center; font-size: 18px; font-weight: bold;">' . $nome . '</h5>
+            <p class="card-text" style="text-align: center;">Código: ' . $codigo . '</p>
+            <p class="card-text" style="text-align: center;">' . $descricao . '</p>
+            <p class="card-text" style="text-align: center;">Quantidade:' . $quantidade . '</p>
+            <p class="card-text" style="text-align: center;">Preço: ' . $preco . '</p>
+        </div>
+        <img class="card-img-top" style="max-width: 100%; max-height: 200px;" src="data:;base64,' . $imagem . '" alt="Imagem do Produto">
+    </div>
+</div>
+
+                ';
         }
     } else {
         echo '<p class="no-results">Nenhum resultado encontrado.</p>';
