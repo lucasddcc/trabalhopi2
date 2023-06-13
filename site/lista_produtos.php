@@ -8,8 +8,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- CSS Personalizado -->
-    <link rel="stylesheet" type="text/css" href="style.css">
-    
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
 </head>
 
 <body>
@@ -92,39 +94,19 @@
                     $imagem = base64_encode($row['imagem']);
 
                     // Exibe o produto
-                    /*echo '
-                <div class="col-md-4" >
-                    <div class="card mb-4" style="height:90%; display: flex; flex: 1;
-                    align-items: center;
-                    justify-content: center;">
-                        <img class="card-img-top" id="fotos_produtos" style="align-self: center; max-width: 50%; max-height: 200px;" src="data:;base64,' . $imagem . '" alt="Imagem do Produto">
-                        <div class="card-body">
-                            <h5 class="card-title">' . $nome . '</h5>
-                            <p class="card-text">Código: ' . $codigo . '</p>
-                            <p class="card-text">' . $descricao . '</p>
-                            <p class="card-text">Quantidade: ' . $quantidade . '</p>
-                            <p class="card-text">Preço: ' . $preco . '</p>
-                        </div>
-                    </div>
-                </div>';*/
-
-
-                    // Exibe o produto
                     echo '
                 <div class="col-md-4">
-    <div class="card mb-4" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
-        <div class="card-body" style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <h5 class="card-title" style="text-align: center; font-size: 18px; font-weight: bold;">' . $nome . '</h5>
-            <p class="card-text" style="text-align: center;">Código: ' . $codigo . '</p>
-            <p class="card-text" style="text-align: center;">' . $descricao . '</p>
-            <p class="card-text" style="text-align: center;">Quantidade:' . $quantidade . '</p>
-            <p class="card-text" style="text-align: center;">Preço: ' . $preco . '</p>
-        </div>
-        <img class="card-img-top" id="fotos_produtos" style="max-width: 100%; height: 200px; object-fit: contain;" src="data:;base64,' . $imagem . '" alt="Imagem do Produto">
-    </div>
-</div>
-
-                ';
+                    <div class="card mb-4" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div class="card-body" style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                            <img class="card-img-top" id="fotos_produtos" style="max-width: 100%; height: 200px; object-fit: cover;" src="data:;base64,' . $imagem . '" alt="Imagem do Produto">
+                            <h5 class="card-title" style="text-align: center; font-size: 18px; font-weight: bold;">' . $nome . '</h5>
+                            <p class="card-text" style="text-align: center;">Código: ' . $codigo . '</p>
+                            <p class="card-text" style="text-align: center;">' . $descricao . '</p>
+                            <p class="card-text" style="text-align: center;">Quantidade:' . $quantidade . '</p>
+                            <p class="card-text" style="text-align: center;">Preço: ' . $preco . '</p>
+                        </div>
+                    </div>
+                </div>';
 
                 }
                 // Fecha a conexão com o banco de dados
@@ -133,14 +115,8 @@
             </div>
         </div>
 
-            <!-- Scripts JavaScript do Bootstrap -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
-         <!-- FOOTER -->
-         <footer>
+        <!-- FOOTER -->
+        <footer>
             <div class="container">
                 <div class="container">
                     <div class="row">
@@ -169,8 +145,13 @@
             </div>
         </footer>
 
+        <!-- Scripts JavaScript do Bootstrap -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-     
+
+
 </body>
 
 </html>
