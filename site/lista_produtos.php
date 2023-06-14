@@ -31,18 +31,20 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- CSS Personalizado -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- BOOTSTRAP 5 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="script.js"></script>
 </head>
 
 <body style="background-color: #5f7dcf;">
-<?php
-session_start();
-include_once('conectarBanco.php'); 
-?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary navbar bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
         <div class="container-fluid">
+        <img src="imagens/TechStoreSemFundo.png" style="width: 100px; height: auto;" class="img-fluid"
+                alt="Imagem responsiva">
             <a class="navbar-brand" href="index.php">Tech Store Tecnologias</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,7 +85,7 @@ include_once('conectarBanco.php');
                         <a class="nav-link" href="logout.php">
                             <i class="fa fa-power-off"></i> Sair</a>
                     </li>
-                    <?php echo '<p style="margin-top: 20px;">' . $nomeUser . '</p>'; ?>
+                    <?php echo '<p style="margin-top: 20px; color: #3153af;">' . $nomeUser . '</p>'; ?>
                 </ul>
             </div>
         </div>
@@ -119,7 +121,7 @@ include_once('conectarBanco.php');
                                         <p class="card-text">Código: ' . $codigo . '</p>
                                         <p class="card-text">' . $descricao . '</p>
                                         <p class="card-text">Quantidade: ' . $quantidade . '</p>
-                                        <p class="card-text">Preço: ' . $preco . '</p>
+                                        <p class="card-text">Preço: R$' . $preco . '</p>
                                         <form action="carrinho.php" method="post">
                                             <input type="hidden" name="codigo" value="' . $codigo . '">
                                             <button type="submit" class="btn btn-primary">Adicionar ao Carrinho</button>

@@ -42,12 +42,10 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
 </head>
 
 <body style="background-color: #5f7dcf;">
-<?php
-session_start();
-include_once('conectarBanco.php'); 
-?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary navbar bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
         <div class="container-fluid">
+        <img src="imagens/TechStoreSemFundo.png" style="width: 100px; height: auto;" class="img-fluid"
+                alt="Imagem responsiva">
             <a class="navbar-brand" href="index.php">Tech Store Tecnologias</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,7 +86,7 @@ include_once('conectarBanco.php');
                         <a class="nav-link" href="logout.php">
                             <i class="fa fa-power-off"></i> Sair</a>
                     </li>
-                    <?php echo '<p style="margin-top: 20px;">' . $nomeUser . '</p>'; ?>
+                    <?php echo '<p style="margin-top: 20px; color: #3153af;">' . $nomeUser . '</p>'; ?>
                 </ul>
             </div>
         </div>
@@ -171,21 +169,22 @@ if (isset($_POST['buscar'])) {
             $imagem = base64_encode($row['imagem']);
 
             // Exibe o produto
-            echo '
-                <div class="col-md-4">
-    <div class="card mb-4" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
-        <div class="card-body" style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <h5 class="card-title" style="text-align: center; font-size: 18px; font-weight: bold;">' . $nome . '</h5>
-            <p class="card-text" style="text-align: center;">Código: ' . $codigo . '</p>
-            <p class="card-text" style="text-align: center;">' . $descricao . '</p>
-            <p class="card-text" style="text-align: center;">Quantidade:' . $quantidade . '</p>
-            <p class="card-text" style="text-align: center;">Preço: ' . $preco . '</p>
-        </div>
-        <img class="card-img-top" style="max-width: 100%; max-height: 200px;" src="data:;base64,' . $imagem . '" alt="Imagem do Produto">
-    </div>
-</div>
-
-                ';
+            echo '<div class="col-md-4">
+                            <div class="card mb-4">
+                                <img class="card-img-top" style="max-width: 100%; max-height: 200px;" src="data:;base64,' . $imagem . '" alt="Imagem do Produto">
+                                    <div class="card-body">
+                                        <h5 class="card-title">' . $nome . '</h5>
+                                        <p class="card-text">Código: ' . $codigo . '</p>
+                                        <p class="card-text">' . $descricao . '</p>
+                                        <p class="card-text">Quantidade: ' . $quantidade . '</p>
+                                        <p class="card-text">Preço: R$' . $preco . ' </p>
+                                        <form action="carrinho.php" method="post">
+                                            <input type="hidden" name="codigo" value="' . $codigo . '">
+                                            <button type="submit" class="btn btn-primary">Adicionar ao Carrinho</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>';
         }
     } else {
         echo '<p class="no-results">Nenhum resultado encontrado.</p>';

@@ -26,6 +26,8 @@ include_once('conectarBanco.php');
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary navbar bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
         <div class="container-fluid">
+        <img src="imagens/TechStoreSemFundo.png" style="width: 100px; height: auto;" class="img-fluid"
+                alt="Imagem responsiva">
             <a class="navbar-brand" href="index.php">Tech Store Tecnologias</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,7 +68,7 @@ include_once('conectarBanco.php');
                         <a class="nav-link" href="logout.php">
                             <i class="fa fa-power-off"></i> Sair</a>
                     </li>
-                    <?php echo '<p style="margin-top: 20px;">' . ($_SESSION['username']) . '</p>'; ?>
+                    <?php echo '<p style="margin-top: 20px; color: #3153af;">' . ($_SESSION['username']) . '</p>'; ?>
                 </ul>
             </div>
         </div>

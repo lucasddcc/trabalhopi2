@@ -42,9 +42,12 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
 
 <body style="background-color: #5f7dcf;">
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary navbar bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary navbar bg-dark border-bottom border-bottom-dark"
+        data-bs-theme="dark">
         <div class="container-fluid">
             <i href="imagens/TechStoreSemFundo.png"></i>
+            <img src="imagens/TechStoreSemFundo.png" style="width: 100px; height: auto;" class="img-fluid"
+                alt="Imagem responsiva">
             <a class="navbar-brand" href="index.php">Tech Store Tecnologias</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,31 +90,30 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
                         <a class="nav-link" href="logout.php">
                             <i class="fa fa-power-off"></i> Sair</a>
                     </li>
-                    <?php echo '<p style="margin-top: 20px;">' . $nomeUser . '</p>'; ?>
+                    <?php echo '<p style="margin-top: 20px; color: #3153af;">' . $nomeUser . '</p>'; ?>
                 </ul>
             </div>
         </div>
     </nav>
-        <div id="conteudo" class="container mt-4">
-            <div id="lista_produtos" class="lista_produtos container mt-4">
-                <div class="row">
-                    <?php
-                    // Consulta os produtos no banco de dados
-                    $sql = "SELECT * FROM produto";
-                    $resultado = mysqli_query($conexao, $sql);
-                    $cont_prod = 0;
+        <div id="lista_produtos" class="lista_produtos container mt-4">
+            <div class="row">
+                <?php
+                // Consulta os produtos no banco de dados
+                $sql = "SELECT * FROM produto";
+                $resultado = mysqli_query($conexao, $sql);
+                $cont_prod = 0;
 
-                    // Loop através dos resultados e exibe cada produto
-                    while ($row = mysqli_fetch_assoc($resultado)) {
-                        $nome = $row['nome'];
-                        $codigo = $row['codigo'];
-                        $descricao = $row['descricao'];
-                        $quantidade = $row['quantidade'];
-                        $preco = $row['preco'];
-                        $imagem = base64_encode($row['imagem']);
+                // Loop através dos resultados e exibe cada produto
+                while ($row = mysqli_fetch_assoc($resultado)) {
+                    $nome = $row['nome'];
+                    $codigo = $row['codigo'];
+                    $descricao = $row['descricao'];
+                    $quantidade = $row['quantidade'];
+                    $preco = $row['preco'];
+                    $imagem = base64_encode($row['imagem']);
 
-                        // Exibe o produto
-                        echo '<div class="col-md-4">
+                    // Exibe o produto
+                    echo '<div class="col-md-4">
                             <div class="card mb-4">
                                 <img class="card-img-top" style="max-width: 100%; max-height: 200px;" src="data:;base64,' . $imagem . '" alt="Imagem do Produto">
                                     <div class="card-body">
@@ -128,37 +130,39 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
                                 </div>
                             </div>';
 
-                    }
-                    // Fecha a conexão com o banco de dados
-                    mysqli_close($conexao);
-                    ?>
-                </div>
+                }
+                // Fecha a conexão com o banco de dados
+                mysqli_close($conexao);
+                ?>
             </div>
         </div>
     </div>
+    </div>
 
     <style>
-    body {
-      margin: 0;
-      padding-bottom: 60px; /* altura do footer */
-    }
+        body {
+            margin: 0;
+            padding-bottom: 60px;
+            /* altura do footer */
+        }
 
-    footer {
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 60px; /* altura do footer */
-      background-color: #0b0262;
-      text-align: center;
-      color: whitesmoke;
-    }
-  </style>
+        footer {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            /* altura do footer */
+            background-color: #0b0262;
+            text-align: center;
+            color: whitesmoke;
+        }
+    </style>
 
 
-<footer>
-<span>© 2023 Tech Store Loja de Tecnologia. Todos os direitos reservados.</span>
-  </footer>
+    <footer>
+        <span>© 2023 Tech Store Loja de Tecnologia. Todos os direitos reservados.</span>
+    </footer>
 
     <!-- Scripts JavaScript do Bootstrap -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
