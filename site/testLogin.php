@@ -19,7 +19,7 @@
         // print_r($sql);
         // print_r($result);
         
-        include_once('verificaAdmin.php');
+       
 
         if(mysqli_num_rows($result) < 1)
         {
@@ -29,7 +29,7 @@
         }
         else
         {
-            $_SESSION['username'] = $email;
+            $_SESSION['username'] = $username;
             $_SESSION['password'] = $password;
             header('Location: index.php');
         }

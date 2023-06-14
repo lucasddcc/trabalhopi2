@@ -2,22 +2,48 @@
 session_start();
 include_once('conectarBanco.php');
 
-// print_r($_SESSION);
-if ((!isset($_SESSION['email']) == true) and (!isset($_SESSION['password']) == true)) {
-    unset($_SESSION['email']);
-    unset($_SESSION['senha']);
+
+print_r($_SESSION);
+if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) == true)) {
+    unset($_SESSION['username']);
+    unset($_SESSION['password']);
     header('Location: login.php');
 }
+$email = $_SESSION['username'];
+$sql = "SELECT admin FROM cliente WHERE email = '$email' ";
+$verificaAdmin = -1;
+$result = mysqli_query($conexao, $sql);
+
+if ($result && mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+    $verificaAdmin = $row["admin"];
+    
+    print_r($row["admin"]);
+
+} else {
+    echo "Nenhum resultado encontrado.";
+}
+
+print_r($verificaAdmin);
+echo '<h1>' .($_SESSION['username']). '</h1>';
+echo '<h1>' .($verificaAdmin). '</h1>';
+echo '<h1>' .($_SESSION). '</h1>';
+
+if ($verificaAdmin < 1) {
+    header("location:lista_produtos.php");
+}
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $nome = $_POST['nome'];
     $descricao = $_POST['descricao'];
     $quantidade = $_POST['quantidade'];
     $preco = $_POST['preco'];
-   
+
 
     // Verifica se um arquivo de imagem foi enviado
-    if(isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK){
+    if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
         // Lê o arquivo de imagem
         $imagem = file_get_contents($_FILES['imagem']['tmp_name']);
         // Escapa os caracteres especiais da imagem
