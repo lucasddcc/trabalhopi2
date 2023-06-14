@@ -28,7 +28,7 @@ form[action="login.php"] button[type="submit"] {
 form[action="cadastro.php"] {
   max-width: 400px;
   margin: 0 auto;
-  background-color: #f2f2f2;
+  background-color: #5f7dcf;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
@@ -56,7 +56,7 @@ form[action="cadastro.php"] button[type="submit"] {
 }
 
 body {
-  background-color: #f7f7f7;
+  background-color: #353232;
   font-family: Arial, sans-serif;
 }
 

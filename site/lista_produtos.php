@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- CSS Personalizado -->
     <link rel="stylesheet" type="text/css" href="style.css">
-    
+
 </head>
 
-<body>
+<body style="background-color: #5f7dcf;">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -46,7 +46,7 @@
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="carrinho.php">
                             <i class="fa fa-shopping-cart"></i> Carrinho
                         </a>
                     </li>
@@ -66,7 +66,7 @@
                 // Configurações do banco de dados
                 $servidor = "localhost";
                 $usuario = "root";
-                $senha = "admin";
+                $senha = "";
                 $banco = "trabalho";
 
                 // Conecta ao banco de dados
@@ -92,39 +92,23 @@
                     $imagem = base64_encode($row['imagem']);
 
                     // Exibe o produto
-                    /*echo '
-                <div class="col-md-4" >
-                    <div class="card mb-4" style="height:90%; display: flex; flex: 1;
-                    align-items: center;
-                    justify-content: center;">
-                        <img class="card-img-top" id="fotos_produtos" style="align-self: center; max-width: 50%; max-height: 200px;" src="data:;base64,' . $imagem . '" alt="Imagem do Produto">
-                        <div class="card-body">
-                            <h5 class="card-title">' . $nome . '</h5>
-                            <p class="card-text">Código: ' . $codigo . '</p>
-                            <p class="card-text">' . $descricao . '</p>
-                            <p class="card-text">Quantidade: ' . $quantidade . '</p>
-                            <p class="card-text">Preço: ' . $preco . '</p>
-                        </div>
-                    </div>
-                </div>';*/
-
-
-                    // Exibe o produto
                     echo '
-                <div class="col-md-4">
-    <div class="card mb-4" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
-        <div class="card-body" style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <h5 class="card-title" style="text-align: center; font-size: 18px; font-weight: bold;">' . $nome . '</h5>
-            <p class="card-text" style="text-align: center;">Código: ' . $codigo . '</p>
-            <p class="card-text" style="text-align: center;">' . $descricao . '</p>
-            <p class="card-text" style="text-align: center;">Quantidade:' . $quantidade . '</p>
-            <p class="card-text" style="text-align: center;">Preço: ' . $preco . '</p>
+<div class="col-md-4">
+    <div class="card mb-4">
+        <img class="card-img-top" style="max-width: 100%; max-height: 200px;" src="data:;base64,' . $imagem . '" alt="Imagem do Produto">
+        <div class="card-body">
+            <h5 class="card-title">' . $nome . '</h5>
+            <p class="card-text">Código: ' . $codigo . '</p>
+            <p class="card-text">' . $descricao . '</p>
+            <p class="card-text">Quantidade: ' . $quantidade . '</p>
+            <p class="card-text">Preço: ' . $preco . '</p>
+            <form action="carrinho.php" method="post">
+            <input type="hidden" name="codigo" value="<?php echo $codigo; ?>">
+    <button type="submit">Adicionar ao Carrinho</button>
+</form>
         </div>
-        <img class="card-img-top" id="fotos_produtos" style="max-width: 100%; height: 200px; object-fit: contain;" src="data:;base64,' . $imagem . '" alt="Imagem do Produto">
     </div>
-</div>
-
-                ';
+</div>';
 
                 }
                 // Fecha a conexão com o banco de dados
@@ -133,14 +117,14 @@
             </div>
         </div>
 
-            <!-- Scripts JavaScript do Bootstrap -->
+        <!-- Scripts JavaScript do Bootstrap -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
-         <!-- FOOTER -->
-         <footer>
+        <!-- FOOTER -->
+        <footer>
             <div class="container">
                 <div class="container">
                     <div class="row">
@@ -169,8 +153,6 @@
             </div>
         </footer>
 
-
-     
 </body>
 
 </html>

@@ -58,7 +58,7 @@ mysqli_close($conexao);
     <script src="script.js"></script>
 </head>
 
-<body>
+<body style="background-color: #5f7dcf;">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -92,7 +92,7 @@ mysqli_close($conexao);
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="carrinho.php">
                             <i class="fa fa-shopping-cart"></i> Carrinho
                         </a>
                     </li>
