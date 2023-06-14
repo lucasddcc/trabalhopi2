@@ -15,20 +15,18 @@
 </head>
 
 <body style="background-color: #5f7dcf;">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <div class="container mt-4">
-        <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
-
+<?php
+session_start();
+include_once('conectarBanco.php'); 
+?>
+<nav class="navbar navbar-expand-lg bg-body-tertiary navbar bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
+        <div class="container-fluid">
             <a class="navbar-brand" href="index.php">Tech Store Tecnologias</a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="index.php">Página Principal</a>
@@ -37,19 +35,18 @@
                         <a class="nav-link" href="login.php">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cadastro_cliente.php">Cadastro</a>
+                        <a class="nav-link" href="cadastro_cliente.php">Cadastro de Usuários</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="lista_produtos.php">Produtos</a>
+                        <a class="nav-link" href="lista_produtos.php">Catálogo de Produtos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cadastro_produto.php">Cadastro Produto</a>
+                        <a class="nav-link" href="cadastro_produto.php">Cadastro de Produtos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="busca_produto.php">Buscar Produto</a>
+                        <a class="nav-link" href="busca_produto.php">Busca de Produto</a>
                     </li>
                 </ul>
-
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="carrinho.php">
@@ -64,9 +61,11 @@
                         <a class="nav-link" href="logout.php">
                             <i class="fa fa-power-off"></i> Sair</a>
                     </li>
+                    <?php echo '<p style="margin-top: 20px;">' . ($_SESSION['username']) . '</p>'; ?>
                 </ul>
             </div>
-        </nav>
+        </div>
+    </nav>
         <div id="lista_produtos" class="lista_produtos container mt-4">
             <h2>Catálogo de Produtos</h2>
 
@@ -120,35 +119,29 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
-        <!-- FOOTER -->
-        <footer>
-            <div class="container">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h4>Informações de Contato</h4>
-                            <p>Endereço: Avenida da Imprensa, 1137 - Ribeirão Preto - São Paulo</p>
-                            <p>Telefone: (16) 3826-4002</p>
-                            <p>Email: exemplo@mail.com</p>
-                        </div>
-                        <div class="col-md-6">
-                            <h4>Links Úteis</h4>
-                            <ul>
-                                <li><a href="#">Página Inicial</a></li>
-                                <li><a href="#">Produtos</a></li>
-                                <li><a href="#">Sobre Nós</a></li>
-                                <li><a href="#">Contato</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p>&copy; 2023 Loja de Tecnologias Tech Store. Todos os direitos reservados.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <style>
+    body {
+      margin: 0;
+      padding-bottom: 60px; /* altura do footer */
+    }
+
+    footer {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 60px; /* altura do footer */
+      background-color: #0b0262;
+      text-align: center;
+      color: whitesmoke;
+    }
+  </style>
+
+
+<footer>
+<span>© 2023 Tech Store Loja de Tecnologia. Todos os direitos reservados.</span>
+  </footer>
+
 </body>
 
 </html>

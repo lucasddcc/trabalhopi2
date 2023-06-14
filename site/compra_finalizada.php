@@ -1,8 +1,13 @@
+<?php
+session_start();
+include_once('conectarBanco.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Cadastro</title>
+    <title>Loja de Eletrônicos</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
@@ -15,15 +20,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="script.js"></script>
 </head>
 
 <body style="background-color: #5f7dcf;">
-<?php
-session_start();
-include_once('conectarBanco.php'); 
-?>
-<nav class="navbar navbar-expand-lg bg-body-tertiary navbar bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary navbar bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php">Tech Store Tecnologias</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
@@ -70,25 +71,8 @@ include_once('conectarBanco.php');
             </div>
         </div>
     </nav>
-        <!-- Scripts JavaScript do Bootstrap -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-        <!-- Formulário de Cadastro -->
-        <script src="script_cad_produto.js"></script>
-        <div class="container mt-4">
-            <h2>Buscar Produto</h2>
-
-            <form id="cadastro_produto-form" action="busca_produto.php" method="POST">
-
-                <div class="form-group">
-                    <input type="text" name="buscar" placeholder="Digite o nome do produto">
-                    <input type="submit" class="btn btn-primary" value="Buscar">
-                </div>
-            </form>
-        </div>
-        <style>
+    <style>
     body {
       margin: 0;
       padding-bottom: 60px; /* altura do footer */
@@ -111,64 +95,11 @@ include_once('conectarBanco.php');
 <span>© 2023 Tech Store Loja de Tecnologia. Todos os direitos reservados.</span>
   </footer>
 
+    <!-- Scripts JavaScript do Bootstrap -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>
-
-<?php
-
-// Conecta ao banco de dados
-$conexao = mysqli_connect($servidor, $usuario, $senha, $banco);
-
-// Verifica se a conexão foi bem sucedida
-if (!$conexao) {
-    die("Conexão falhou: " . mysqli_connect_error());
-}
-
-// Verifica se o formulário de busca foi submetido
-if (isset($_POST['buscar'])) {
-    // Obtém o valor de busca
-    $busca = $_POST['buscar'];
-
-    // Query para buscar produtos com base no nome ou código
-    $sql = "SELECT * FROM produto WHERE nome LIKE '%$busca%'";
-
-    // Executa a query
-    $resultado = mysqli_query($conexao, $sql);
-
-    // Verifica se houve resultados
-    if (mysqli_num_rows($resultado) > 0) {
-        // Itera sobre os resultados
-        while ($row = mysqli_fetch_assoc($resultado)) {
-            $nome = $row['nome'];
-            $codigo = $row['codigo'];
-            $descricao = $row['descricao'];
-            $quantidade = $row['quantidade'];
-            $preco = $row['preco'];
-            $imagem = base64_encode($row['imagem']);
-
-            // Exibe o produto
-            echo '
-                <div class="col-md-4">
-    <div class="card mb-4" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
-        <div class="card-body" style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <h5 class="card-title" style="text-align: center; font-size: 18px; font-weight: bold;">' . $nome . '</h5>
-            <p class="card-text" style="text-align: center;">Código: ' . $codigo . '</p>
-            <p class="card-text" style="text-align: center;">' . $descricao . '</p>
-            <p class="card-text" style="text-align: center;">Quantidade:' . $quantidade . '</p>
-            <p class="card-text" style="text-align: center;">Preço: ' . $preco . '</p>
-        </div>
-        <img class="card-img-top" style="max-width: 100%; max-height: 200px;" src="data:;base64,' . $imagem . '" alt="Imagem do Produto">
-    </div>
-</div>
-
-                ';
-        }
-    } else {
-        echo '<p class="no-results">Nenhum resultado encontrado.</p>';
-    }
-}
-
-// Fecha a conexão com o banco de dados
-mysqli_close($conexao);
-?>
