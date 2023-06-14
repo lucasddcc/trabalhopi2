@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -10,7 +10,9 @@
     <!-- CSS Personalizado -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+    <!-- BOOTSTRAP 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 
 <body style="background-color: #5f7dcf;">
@@ -18,12 +20,15 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div class="container mt-4">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Loja de Eletrônicos</a>
+        <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
+
+            <a class="navbar-brand" href="index.php">Tech Store Tecnologias</a>
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -45,6 +50,7 @@
                         <a class="nav-link" href="busca_produto.php">Buscar Produto</a>
                     </li>
                 </ul>
+
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="carrinho.php">
@@ -53,12 +59,28 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <i class="fa fa-bell"></i> Notificações
-                        </a>
+                            <i class="fa fa-bell"></i> Notificações</a>
+                    </li>
+                    <li class="">
+                        <a class="nav-link" href="logout.php">
+                            <i class="fa fa-power-off"></i> Sair</a>
                     </li>
                 </ul>
             </div>
         </nav>
+
+        <div id="conteudo" class="container mt-4">
+                                                                                    <br><br><br>
+                                                                                    <br><br><br>
+                                                                                    <br><br><br>
+                                                                                    <br><br><br>
+                                                                                    <br><br><br>
+                                                                                    <br><br><br>
+                                                                                    <br><br><br>
+                                                                                    <br><br><br>
+                                                                                    <br><br><br>
+                                                                                    <br><br><br>
+        </div>
 
         <!-- FOOTER -->
         <footer>

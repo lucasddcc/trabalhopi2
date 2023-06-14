@@ -2,7 +2,7 @@
 // Configurações do banco de dados
 $servidor = "localhost";
 $usuario = "root";
-$senha = "";
+$senha = "admin";
 $banco = "trabalho";
 
 // Conecta ao banco de dados

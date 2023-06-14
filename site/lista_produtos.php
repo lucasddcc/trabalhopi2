@@ -8,8 +8,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- CSS Personalizado -->
-    <link rel="stylesheet" type="text/css" href="style.css">
-
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- BOOTSTRAP 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 
 <body style="background-color: #5f7dcf;">
@@ -58,24 +59,13 @@
                 </ul>
             </div>
         </nav>
-        <div class="container mt-4">
+        <div id="lista_produtos" class="lista_produtos container mt-4">
             <h2>Catálogo de Produtos</h2>
 
             <div class="row">
                 <?php
-                // Configurações do banco de dados
-                $servidor = "localhost";
-                $usuario = "root";
-                $senha = "";
-                $banco = "trabalho";
-
-                // Conecta ao banco de dados
-                $conexao = mysqli_connect($servidor, $usuario, $senha, $banco);
-
-                // Verifica se a conexão foi bem sucedida
-                if (!$conexao) {
-                    die("Conexão falhou: " . mysqli_connect_error());
-                }
+                //CONECTA AO BANCO DE DADOS
+                include_once('conectarBanco.php');
 
                 // Consulta os produtos no banco de dados
                 $sql = "SELECT * FROM produto";

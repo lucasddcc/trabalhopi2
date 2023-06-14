@@ -18,6 +18,8 @@
 
         // print_r($sql);
         // print_r($result);
+        
+        include_once('verificaAdmin.php');
 
         if(mysqli_num_rows($result) < 1)
         {
