@@ -9,6 +9,7 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
     unset($_SESSION['password']);
     header('Location: login.php');
 }
+
 $email = $_SESSION['username'];
 $sql = "SELECT admin FROM cliente WHERE email = '$email' ";
 $verificaAdmin = -1;

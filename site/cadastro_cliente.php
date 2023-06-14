@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once('conectarBanco.php'); 
+include_once('conectarBanco.php');
 function validateEmail($email)
 {
     return filter_var($email, FILTER_VALIDATE_EMAIL);
@@ -37,6 +37,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+
+if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) == true)) {
+    unset($_SESSION['username']);
+    unset($_SESSION['password']);
+    $nomeUser = '';
+} else {
+    $nomeUser = -1;
+    $email = $_SESSION['username'];
+    $sql = "SELECT nome FROM cliente WHERE email = '$email' ";
+    $result = mysqli_query($conexao, $sql);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $nomeUser = $row["nome"];
+        //print_r($row["admin"]);
+    }
+}
 // Fecha a conexão com o banco de dados
 mysqli_close($conexao);
 ?>
@@ -104,7 +121,7 @@ mysqli_close($conexao);
                         <a class="nav-link" href="logout.php">
                             <i class="fa fa-power-off"></i> Sair</a>
                     </li>
-                    <?php echo '<p style="margin-top: 20px;">' . ($_SESSION['username']) . '</p>'; ?>
+                    <?php echo '<p style="margin-top: 20px;">' . $nomeUser . '</p>'; ?>
                 </ul>
             </div>
         </div>
