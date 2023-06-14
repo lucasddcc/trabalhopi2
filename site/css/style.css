@@ -115,6 +115,9 @@ form[action="cadastro.php"] button[type="submit"] {
 /* Estilo Global */
 .container {
   margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 body {
@@ -130,10 +133,13 @@ body {
   /* Define uma altura mínima igual à altura total da janela de visualização */
   padding-bottom: 50px;
   /* Deixa espaço para o rodapé */
+  flex: 1;
 }
 
-
-
+.footer {
+  flex-shrink: 0;
+  height: 100px; /* Altura do footer */
+}
 
 footer {
   background-color: #f8f8f8;
@@ -150,7 +156,6 @@ footer {
   background: #101558;
   color: #000000;
   box-sizing: border-box;
-  border-radius: 10px;
   bottom: 0;
 }
 
@@ -164,6 +169,8 @@ footer h4 {
   color: #c0c0c0;
   font-size: 18px;
   font-weight: bold;
+  min-height: 100%;
+  flex-direction: column;
 }
 
 footer p,
@@ -245,6 +252,3 @@ footer p:last-child {
   object-fit: cover; /* Faz com que a imagem cubra todo o espaço disponível */
 }
 
-#navbarNav{
-  color: #ff8080;
-}

@@ -70,52 +70,53 @@
         </nav>
 
         <div id="conteudo" class="container mt-4">
-                                                                                    <br><br><br>
-                                                                                    <br><br><br>
-                                                                                    <br><br><br>
-                                                                                    <br><br><br>
-                                                                                    <br><br><br>
-                                                                                    <br><br><br>
-                                                                                    <br><br><br>
-                                                                                    <br><br><br>
-                                                                                    <br><br><br>
-                                                                                    <br><br><br>
+            <br><br><br>
+            <br><br><br>
+            <br><br><br>
+            <br><br><br>
+            <br><br><br>
+            <br><br><br>
+            <br><br><br>
+            <br><br><br>
+            <br><br><br>
+            <br><br><br>
         </div>
+    </div>
 
-        <!-- FOOTER -->
-        <footer>
+    <!-- FOOTER -->
+    <footer class="footer" id="footer">
+        <div class="container">
             <div class="container">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h4>Informações de Contato</h4>
-                            <p>Endereço: Avenida da Imprensa, 1137 - Ribeirão Preto - São Paulo</p>
-                            <p>Telefone: (16) 3826-4002</p>
-                            <p>Email: exemplo@email.com</p>
-                        </div>
-                        <div class="col-md-6">
-                            <h4>Links Úteis</h4>
-                            <ul>
-                                <li><a href="#">Página Inicial</a></li>
-                                <li><a href="#">Produtos</a></li>
-                                <li><a href="#">Sobre Nós</a></li>
-                                <li><a href="#">Contato</a></li>
-                            </ul>
-                        </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Informações de Contato</h4>
+                        <p>Endereço: Avenida da Imprensa, 1137 - Ribeirão Preto - São Paulo</p>
+                        <p>Telefone: (16) 3826-4002</p>
+                        <p>Email: exemplo@email.com</p>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p>&copy; 2023 Loja de Tecnologias Tech Store. Todos os direitos reservados.</p>
-                        </div>
+                    <div class="col-md-6">
+                        <h4>Links Úteis</h4>
+                        <ul>
+                            <li><a href="#">Página Inicial</a></li>
+                            <li><a href="#">Produtos</a></li>
+                            <li><a href="#">Sobre Nós</a></li>
+                            <li><a href="#">Contato</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>&copy; 2023 Loja de Tecnologias Tech Store. Todos os direitos reservados.</p>
                     </div>
                 </div>
             </div>
-        </footer>
+        </div>
+    </footer>
 
-        <!-- Scripts JavaScript do Bootstrap -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Scripts JavaScript do Bootstrap -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 

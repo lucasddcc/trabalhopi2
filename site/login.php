@@ -86,9 +86,10 @@ mysqli_close($conexao);
 
             </form>
         </div>
-
+        
+        <br><br><br>
         <!-- FOOTER -->
-        <footer>
+        <footer class="footer" id="footer">
             <div class="container">
                 <div class="container">
                     <div class="row">
