@@ -100,6 +100,7 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
                     $resultado = mysqli_query($conexao, $sql);
                     $cont_prod = 0;
 
+<<<<<<< Updated upstream
                     // Loop através dos resultados e exibe cada produto
                     while ($row = mysqli_fetch_assoc($resultado)) {
                         $nome = $row['nome'];
@@ -131,6 +132,33 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
                     // Fecha a conexão com o banco de dados
                     mysqli_close($conexao);
                     ?>
+=======
+    <!-- FOOTER -->
+    <footer class="footer" id="footer" style="height: auto; bottom: 0;">
+        <div class="container" style="bottom: 0;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Informações de Contato</h4>
+                        <p>Endereço: Avenida da Imprensa, 1137 - Ribeirão Preto - São Paulo</p>
+                        <p>Telefone: (16) 3826-4002</p>
+                        <p>Email: exemplo@email.com</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Links Úteis</h4>
+                        <ul>
+                            <li><a href="#">Página Inicial</a></li>
+                            <li><a href="#">Produtos</a></li>
+                            <li><a href="#">Sobre Nós</a></li>
+                            <li><a href="#">Contato</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>&copy; 2023 Loja de Tecnologias Tech Store. Todos os direitos reservados.</p>
+                    </div>
+>>>>>>> Stashed changes
                 </div>
             </div>
         </div>

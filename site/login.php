@@ -45,8 +45,18 @@ mysqli_close($conexao);
 </head>
 
 <body style="background-color: #5f7dcf;">
+<<<<<<< Updated upstream
 <nav class="navbar navbar-expand-lg bg-body-tertiary navbar bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
         <div class="container-fluid">
+=======
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <div class="container mt-4">
+        <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
+
+>>>>>>> Stashed changes
             <a class="navbar-brand" href="index.php">Tech Store Tecnologias</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,7 +122,10 @@ mysqli_close($conexao);
 
             </form>
         </div>
+    </div>
+    <br><br>
 
+<<<<<<< Updated upstream
         <br><br><br>
         <style>
     body {
@@ -141,6 +154,45 @@ mysqli_close($conexao);
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+=======
+
+    
+    <!-- FOOTER -->
+    <footer class="footer" id="footer" style="bottom: 0; height: auto;">
+            <div class="container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Informações de Contato</h4>
+                            <p>Endereço: Avenida da Imprensa, 1137 - Ribeirão Preto - São Paulo</p>
+                            <p>Telefone: (16) 3826-4002</p>
+                            <p>Email: exemplo@email.com</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Links Úteis</h4>
+                            <ul>
+                                <li><a href="#">Página Inicial</a></li>
+                                <li><a href="#">Produtos</a></li>
+                                <li><a href="#">Sobre Nós</a></li>
+                                <li><a href="#">Contato</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>&copy; 2023 Loja de Tecnologias Tech Store. Todos os direitos reservados.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    <br><br><br>
+
+    <!-- Scripts JavaScript do Bootstrap -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+>>>>>>> Stashed changes
 
 </body>
 
