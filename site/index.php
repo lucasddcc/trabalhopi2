@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 
 <head>
@@ -59,10 +59,6 @@
                 </ul>
             </div>
         </nav>
-
-      
-        
-        
 
         <!-- FOOTER -->
         <footer>
