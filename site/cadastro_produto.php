@@ -3,7 +3,7 @@ session_start();
 include_once('conectarBanco.php');
 
 
-print_r($_SESSION);
+//print_r($_SESSION);
 if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) == true)) {
     unset($_SESSION['username']);
     unset($_SESSION['password']);
@@ -17,17 +17,15 @@ $result = mysqli_query($conexao, $sql);
 if ($result && mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
     $verificaAdmin = $row["admin"];
-    
-    print_r($row["admin"]);
-
+    //print_r($row["admin"]);
 } else {
     echo "Nenhum resultado encontrado.";
 }
 
-print_r($verificaAdmin);
-echo '<h1>' .($_SESSION['username']). '</h1>';
-echo '<h1>' .($verificaAdmin). '</h1>';
-echo '<h1>' .($_SESSION). '</h1>';
+// print_r($verificaAdmin);
+// echo '<p>' .($_SESSION['username']). '</p>';
+// echo '<h1>' .($verificaAdmin). '</h1>';
+// echo '<h1>' .($_SESSION). '</h1>';
 
 if ($verificaAdmin < 1) {
     header("location:lista_produtos.php");
@@ -89,19 +87,22 @@ mysqli_close($conexao);
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div class="container mt-4">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="index.php">Loja de Eletrônicos</a>
+        <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
+
+            <a class="navbar-brand" href="index.php">Tech Store Tecnologias</a>
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="index.php">Página Principal</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Login</a>
+                        <a class="nav-link" href="login.php">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="cadastro_cliente.php">Cadastro</a>
@@ -116,7 +117,8 @@ mysqli_close($conexao);
                         <a class="nav-link" href="busca_produto.php">Buscar Produto</a>
                     </li>
                 </ul>
-                <ul class="navbar-nav ml-auto">
+
+                <ul class="navbar-nav ml-auto">                  
                     <li class="nav-item">
                         <a class="nav-link" href="carrinho.php">
                             <i class="fa fa-shopping-cart"></i> Carrinho
@@ -124,9 +126,14 @@ mysqli_close($conexao);
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <i class="fa fa-bell"></i> Notificações
-                        </a>
+                            <i class="fa fa-bell"></i> Notificações</a>
                     </li>
+                    <li class="">
+                        <a class="nav-link" href="logout.php">
+                            <i class="fa fa-power-off"></i> Sair</a>
+                    </li>
+                    <?php echo '<p style="margin-top: 20px;">' . ($_SESSION['username']) . '</p>'; ?>
+
                 </ul>
             </div>
         </nav>

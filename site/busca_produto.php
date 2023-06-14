@@ -52,8 +52,11 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <i class="fa fa-bell"></i> Notificações
-                        </a>
+                            <i class="fa fa-bell"></i> Notificações</a>
+                    </li>
+                    <li class="">
+                        <a class="nav-link" href="logout.php">
+                            <i class="fa fa-power-off"></i> Sair</a>
                     </li>
                 </ul>
             </div>

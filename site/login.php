@@ -24,12 +24,15 @@ mysqli_close($conexao);
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div class="container mt-4">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="index.php">Loja de Eletrônicos</a>
+        <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
+
+            <a class="navbar-brand" href="index.php">Tech Store Tecnologias</a>
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -51,16 +54,20 @@ mysqli_close($conexao);
                         <a class="nav-link" href="busca_produto.php">Buscar Produto</a>
                     </li>
                 </ul>
+
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="carrinho.php">
                             <i class="fa fa-shopping-cart"></i> Carrinho
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <i class="fa fa-bell"></i> Notificações
-                        </a>
+                            <i class="fa fa-bell"></i> Notificações</a>
+                    </li>
+                    <li class="">
+                        <a class="nav-link" href="logout.php">
+                            <i class="fa fa-power-off"></i> Sair</a>
                     </li>
                 </ul>
             </div>
@@ -86,7 +93,7 @@ mysqli_close($conexao);
 
             </form>
         </div>
-        
+
         <br><br><br>
         <!-- FOOTER -->
         <footer class="footer" id="footer">
