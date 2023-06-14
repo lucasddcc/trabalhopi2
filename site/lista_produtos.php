@@ -65,7 +65,7 @@
 
             <div class="row">
                 <?php
-                //CONECTA AO BANCO DE DADOS
+                // CONECTA AO BANCO DE DADOS
                 include_once('conectarBanco.php');
 
                 // Consulta os produtos no banco de dados
@@ -93,8 +93,8 @@
                                         <p class="card-text">Quantidade: ' . $quantidade . '</p>
                                         <p class="card-text">Preço: ' . $preco . '</p>
                                         <form action="carrinho.php" method="post">
-                                            <input type="hidden" name="codigo" value="<?php echo $codigo; ?>">
-                                            <button type="submit">Adicionar ao Carrinho</button>
+                                            <input type="hidden" name="codigo" value="' . $codigo . '">
+                                            <button type="submit" class="btn btn-primary">Adicionar ao Carrinho</button>
                                         </form>
                                     </div>
                                 </div>
@@ -122,7 +122,7 @@
                             <h4>Informações de Contato</h4>
                             <p>Endereço: Avenida da Imprensa, 1137 - Ribeirão Preto - São Paulo</p>
                             <p>Telefone: (16) 3826-4002</p>
-                            <p>Email: exemplo@email.com</p>
+                            <p>Email: exemplo@mail.com</p>
                         </div>
                         <div class="col-md-6">
                             <h4>Links Úteis</h4>
@@ -142,7 +142,6 @@
                 </div>
             </div>
         </footer>
-
 </body>
 
 </html>

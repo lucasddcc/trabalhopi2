@@ -71,7 +71,7 @@
             <form id="cadastro_produto-form" action="busca_produto.php" method="POST">
 
                 <div class="form-group">
-                    <input type="text" name="buscar" placeholder="Digite o nome ou código do produto">
+                    <input type="text" name="buscar" placeholder="Digite o nome do produto">
                     <input type="submit" class="btn btn-primary" value="Buscar">
                 </div>
             </form>
@@ -101,7 +101,7 @@ if (isset($_POST['buscar'])) {
     $busca = $_POST['buscar'];
 
     // Query para buscar produtos com base no nome ou código
-    $sql = "SELECT * FROM produto WHERE nome LIKE '%$busca%' OR codigo LIKE '%$busca%'";
+    $sql = "SELECT * FROM produto WHERE nome LIKE '%$busca%'";
 
     // Executa a query
     $resultado = mysqli_query($conexao, $sql);
