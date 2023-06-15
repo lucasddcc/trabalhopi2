@@ -1,8 +1,26 @@
-<?php
+<?php //função para pegar o nome e colocar na página
 session_start();
 include_once('conectarBanco.php');
 
+if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) == true)) {
+    unset($_SESSION['username']);
+    unset($_SESSION['password']);
+    $nomeUser = '';
+} else {
+    $nomeUser = -1;
+    $email = $_SESSION['username'];
+    $sql = "SELECT nome FROM cliente WHERE email = '$email' ";
+    $result = mysqli_query($conexao, $sql);
 
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $nomeUser = $row["nome"];
+        //print_r($row["admin"]);
+    }
+}
+?> 
+
+<?php //ver se é admin
 //print_r($_SESSION);
 if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) == true)) {
     unset($_SESSION['username']);
@@ -134,7 +152,7 @@ mysqli_close($conexao);
                         <a class="nav-link" href="logout.php">
                             <i class="fa fa-power-off"></i> Sair</a>
                     </li>
-                    <?php echo '<p style="margin-top: 20px; color: #3153af;">' . ($_SESSION['username']) . '</p>'; ?>
+                    <?php echo '<p style="margin-top: 20px; color: #3153af;">' . $nomeUser . '</p>'; ?>
                 </ul>
             </div>
         </div>
