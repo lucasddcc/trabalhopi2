@@ -95,25 +95,57 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
             </div>
         </div>
     </nav>
-        <div id="lista_produtos" class="lista_produtos container mt-4">
-            <div class="row">
-                <?php
-                // Consulta os produtos no banco de dados
-                $sql = "SELECT * FROM produto";
-                $resultado = mysqli_query($conexao, $sql);
-                $cont_prod = 0;
 
-                // Loop através dos resultados e exibe cada produto
-                while ($row = mysqli_fetch_assoc($resultado)) {
-                    $nome = $row['nome'];
-                    $codigo = $row['codigo'];
-                    $descricao = $row['descricao'];
-                    $quantidade = $row['quantidade'];
-                    $preco = $row['preco'];
-                    $imagem = base64_encode($row['imagem']);
 
-                    // Exibe o produto
-                    echo '<div class="col-md-4">
+    <!-- CARROUSEL -->
+    <div id="carouselExampleIndicators" class="container mt-4 carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="imagens/1.png" alt="Primeiro Slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="imagens/2.png" alt="Segundo Slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="imagens/3.png" alt="Terceiro Slide">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Próximo</span>
+        </a>
+    </div>
+
+
+
+    <div id="lista_produtos" class="lista_produtos container mt-4">
+        <div class="row">
+            <?php
+            // Consulta os produtos no banco de dados
+            $sql = "SELECT * FROM produto";
+            $resultado = mysqli_query($conexao, $sql);
+            $cont_prod = 0;
+
+            // Loop através dos resultados e exibe cada produto
+            while ($row = mysqli_fetch_assoc($resultado)) {
+                $nome = $row['nome'];
+                $codigo = $row['codigo'];
+                $descricao = $row['descricao'];
+                $quantidade = $row['quantidade'];
+                $preco = $row['preco'];
+                $imagem = base64_encode($row['imagem']);
+
+                // Exibe o produto
+                echo '<div class="col-md-4">
                             <div class="card mb-4">
                                 <img class="card-img-top" style="max-width: 100%; max-height: 200px;" src="data:;base64,' . $imagem . '" alt="Imagem do Produto">
                                     <div class="card-body">
@@ -130,12 +162,12 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
                                 </div>
                             </div>';
 
-                }
-                // Fecha a conexão com o banco de dados
-                mysqli_close($conexao);
-                ?>
-            </div>
+            }
+            // Fecha a conexão com o banco de dados
+            mysqli_close($conexao);
+            ?>
         </div>
+    </div>
     </div>
     </div>
 
