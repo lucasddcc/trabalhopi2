@@ -64,7 +64,7 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
     <nav class="navbar navbar-expand-lg bg-body-tertiary navbar bg-dark border-bottom border-bottom-dark"
         data-bs-theme="dark">
         <div class="container-fluid">
-        <img src="imagens/TechStoreSemFundo.png" style="width: 100px; height: auto;" class="img-fluid"
+            <img src="imagens/TechStoreSemFundo.png" style="width: 100px; height: auto;" class="img-fluid"
                 alt="Imagem responsiva">
             <a class="navbar-brand" href="index.php">Tech Store Tecnologias</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
@@ -254,27 +254,29 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
 
 
     <style>
-    body {
-      margin: 0;
-      padding-bottom: 60px; /* altura do footer */
-    }
+        body {
+            margin: 0;
+            padding-bottom: 60px;
+            /* altura do footer */
+        }
 
-    footer {
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 60px; /* altura do footer */
-      background-color: #0b0262;
-      text-align: center;
-      color: whitesmoke;
-    }
-  </style>
+        footer {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            /* altura do footer */
+            background-color: #0b0262;
+            text-align: center;
+            color: whitesmoke;
+        }
+    </style>
 
 
-<footer>
-<span>© 2023 Tech Store Loja de Tecnologia. Todos os direitos reservados.</span>
-  </footer>
+    <?php
+    include_once('footer.php');
+    ?>
 
 
 

@@ -41,56 +41,9 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
 </head>
 
 <body style="background-color: #5f7dcf;">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary navbar bg-dark border-bottom border-bottom-dark"
-        data-bs-theme="dark">
-        <div class="container-fluid">
-            <img src="imagens/TechStoreSemFundo.png" style="width: 100px; height: auto;" class="img-fluid"
-                alt="Imagem responsiva">
-            <a class="navbar-brand" href="index.php">Tech Store Tecnologias</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php">Página Principal</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.php">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="cadastro_cliente.php">Cadastro de Usuários</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="lista_produtos.php">Catálogo de Produtos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="cadastro_produto.php">Cadastro de Produtos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="busca_produto.php">Busca de Produto</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="carrinho.php">
-                            <i class="fa fa-shopping-cart"></i> Carrinho
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fa fa-bell"></i> Notificações</a>
-                    </li>
-                    <li class="">
-                        <a class="nav-link" href="logout.php">
-                            <i class="fa fa-power-off"></i> Sair</a>
-                    </li>
-                    <?php echo '<p style="margin-top: 20px; color: #3153af;">' . $nomeUser . '</p>'; ?>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <?php
+    include_once('header.php');
+    ?>
     <div id="lista_produtos" class="lista_produtos container mt-4">
         <h2>Catálogo de Produtos</h2>
 
@@ -114,9 +67,9 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
                 $imagem = base64_encode($row['imagem']);
 
                 // Exibe o produto
-                echo '<div class="col-md-4 container">
+                echo '<div class="col-md-4 container mt-4">
                             <div class="card mb-4">
-                                <img class="card-img-top" style="max-width: 100%; max-height: 200px;" src="data:;base64,' . $imagem . '" alt="Imagem do Produto">
+                                <img class="card-img-top" style="margin: 0 auto; justify-content: center; align-items: center; display: flex; height: 250px; width: 250px" src="data:;base64,' . $imagem . '" alt="Imagem do Produto">
                                     <div class="card-body">
                                         <h5 class="card-title">' . $nome . '</h5>
                                         <p class="card-text">Código: ' . $codigo . '</p>
@@ -171,9 +124,9 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
     </style>
 
 
-    <footer>
-        <span>© 2023 Tech Store Loja de Tecnologia. Todos os direitos reservados.</span>
-    </footer>
+    <?php
+    include_once('footer.php');
+    ?>
 
 </body>
 
