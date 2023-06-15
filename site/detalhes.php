@@ -91,65 +91,96 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
             </div>
         </div>
     </nav>
-    <div id="lista_produtos" class="lista_produtos container mt-4">
-        <h2>Catálogo de Produtos</h2>
+    <style>
+        body {
+            background-color: #f8f9fa;
 
-        <div class="row">
-            <?php
-            // CONECTA AO BANCO DE DADOS
-            include_once('conectarBanco.php');
+        }
 
-            // Consulta os produtos no banco de dados
-            $sql = "SELECT * FROM produto";
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #3153afa8;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+    </style>
+    
+    <div class="container">
+        <?php
+        // Verifica se o parâmetro 'codigo' foi enviado na URL
+        if (isset($_GET['codigo'])) {
+            $codigo = $_GET['codigo'];
+
+            // Consulta o produto com base no código recebido
+            $sql = "SELECT * FROM produto WHERE codigo = '$codigo'";
             $resultado = mysqli_query($conexao, $sql);
-            $cont_prod = 0;
 
-            // Loop através dos resultados e exibe cada produto
-            while ($row = mysqli_fetch_assoc($resultado)) {
+            // Verifica se o produto foi encontrado
+            if ($resultado && mysqli_num_rows($resultado) > 0) {
+                $row = mysqli_fetch_assoc($resultado);
                 $nome = $row['nome'];
-                $codigo = $row['codigo'];
                 $descricao = $row['descricao'];
                 $quantidade = $row['quantidade'];
                 $preco = $row['preco'];
                 $imagem = base64_encode($row['imagem']);
-
-                // Exibe o produto
-                echo '<div class="col-md-4 container">
-                            <div class="card mb-4">
-                                <img class="card-img-top" style="max-width: 100%; max-height: 200px;" src="data:;base64,' . $imagem . '" alt="Imagem do Produto">
-                                    <div class="card-body">
-                                        <h5 class="card-title">' . $nome . '</h5>
-                                        <p class="card-text">Código: ' . $codigo . '</p>
-                                        <p class="card-text">' . $descricao . '</p>
-                                        <p class="card-text">Quantidade: ' . $quantidade . '</p>
-                                        <p class="card-text">Preço: R$' . $preco . '</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                        <form action="carrinho.php" method="post">
-                                        <input type="hidden" name="codigo" value="' . $codigo . '">
-                                        <button type="submit" class="btn btn-primary">Adicionar ao Carrinho</button>
-                                        </form>
-                                        <form action="detalhes.php" method="get">
-                                        <input type="hidden" name="codigo" value="' . $codigo . '">
-                                        <button type="submit" class="btn btn-secondary">Ver Detalhes</button>
-                                        </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>';
-
+                
+                // Exibe os detalhes do produto
+                echo '<h2>' . $nome . '</h2>';
+                echo '<img src="data:;base64,' . $imagem . '" alt="Imagem do Produto">';
+                echo '<p><strong>Descrição:</strong> ' . $descricao . '</p>';
+                echo '<p><strong>Quantidade:</strong> ' . $quantidade . '</p>';
+                echo '<p><strong>Preço:</strong> R$' . $preco . '</p>';
+                echo '<form action="carrinho.php" method="post">
+                <input type="hidden" name="codigo" value="' . $codigo . '">
+                <button type="submit" class="btn btn-primary">Adicionar ao Carrinho</button>
+                </form>';
+            } else {
+                echo '<p>Produto não encontrado.</p>';
             }
+
             // Fecha a conexão com o banco de dados
             mysqli_close($conexao);
-            ?>
-        </div>
+        } else {
+            echo '<p>Código do produto não fornecido.</p>';
+        }
+        ?>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- Scripts JavaScript do Bootstrap -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
     <style>
         body {
             margin: 0;
@@ -169,8 +200,6 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
             color: whitesmoke;
         }
     </style>
-
-
     <footer>
         <span>© 2023 Tech Store Loja de Tecnologia. Todos os direitos reservados.</span>
     </footer>
@@ -178,3 +207,6 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
 </body>
 
 </html>
+
+
+

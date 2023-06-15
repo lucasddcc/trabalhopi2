@@ -111,8 +111,6 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
             </div>
         </div>
     </nav>
-
-
     <div class="container mt-4" style="display: flex;">
         <?php
         // Verifica se o carrinho está vazio
@@ -143,7 +141,7 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
                                             <p class="card-text">' . $descricao . '</p>
                                             <p class="card-text">Quantidade: ' . $quantidade . '</p>
                                             <p class="card-text">Preço: ' . $preco . '</p>
-                                            <div style="display: flex;">
+                                            <div class="d-flex justify-content-between align-items-center">
                                                 <form action="adicionar_carrinho.php" method="post">
                                                 <input type="hidden" name="codigo" value="' . $codigo . '">
                                                 <button id="botao_carrinho adicionar" type="submit" class="btn btn-success">Adicionar</button>
