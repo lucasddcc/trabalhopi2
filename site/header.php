@@ -63,6 +63,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="contato.php">Contato</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="local.php">Chegue ate nós</a>
+                    </li>
                 </ul>
             </div>
 

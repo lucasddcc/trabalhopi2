@@ -120,26 +120,6 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
     </div>
     </div>
 
-    <style>
-        body {
-            margin: 0;
-            padding-bottom: 60px;
-            /* altura do footer */
-        }
-
-        footer {
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            height: 60px;
-            /* altura do footer */
-            background-color: #0b0262;
-            text-align: center;
-            color: whitesmoke;
-        }
-    </style>
-
 
     <?php
     include_once('footer.php');
