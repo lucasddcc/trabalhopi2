@@ -43,51 +43,51 @@
             <div class="collapse navbar-collapse container mt-4" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" style="font-weight: bold;" href="index.php">Página Principal</a>
+                        <a class="nav-link text-primary" href="index.php">Página Principal</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.php">Login</a>
+                        <a class="nav-link text-primary" href="login.php">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cadastro_cliente.php">Cadastre-se</a>
+                        <a class="nav-link text-primary" href="cadastro_cliente.php">Cadastre-se</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="lista_produtos.php">Catálogo de Produtos</a>
+                        <a class="nav-link text-primary"  href="lista_produtos.php">Catálogo de Produtos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cadastro_produto.php">Cadastrar de Produtos</a>
+                        <a class="nav-link text-primary" href="cadastro_produto.php">Cadastrar de Produtos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="busca_produto.php">Buscar</a>
+                        <a class="nav-link text-primary" href="busca_produto.php">Buscar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contato.php">Contato</a>
+                        <a class="nav-link text-primary" href="contato.php">Contato</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="local.php">Chegue ate nós</a>
+                        <a class="nav-link text-primary" href="local.php">Chegue ate nós</a>
                     </li>
                 </ul>
+                
             </div>
-
             <div class="collapse navbar-collapse" id="navbarCollapseContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="carrinho.php">
+                        <a class="nav-link text-primary" href="carrinho.php">
                             <i class="fa fa-shopping-cart"></i> Carrinho
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
+                    <li class="nav-item text-primary">
+                        <a class="nav-link text-primary" href="#">
                             <i class="fa fa-bell"></i> Notificações
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="logout.php">
+                    <li class="nav-item text-primary">
+                        <a class="nav-link text-primary" href="logout.php">
                             <i class="fa fa-power-off"></i> Sair
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <p style="margin-top: 20px; color: #3153af;">
+                    <li class="nav-item text-primary">
+                        <p>
                             <?php echo $nomeUser; ?>
                         </p>
                     </li>

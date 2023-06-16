@@ -19,7 +19,6 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
     }
 }
 ?>
-
 <?php //ver se é admin
 //print_r($_SESSION);
 if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) == true)) {
@@ -51,37 +50,6 @@ if ($verificaAdmin < 1) {
 }
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $nome = $_POST['nome'];
-    $descricao = $_POST['descricao'];
-    $quantidade = $_POST['quantidade'];
-    $preco = $_POST['preco'];
-
-
-    // Verifica se um arquivo de imagem foi enviado
-    if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
-        // Lê o arquivo de imagem
-        $imagem = file_get_contents($_FILES['imagem']['tmp_name']);
-        // Escapa os caracteres especiais da imagem
-        $imagem = mysqli_real_escape_string($conexao, $imagem);
-    } else {
-        // Define um valor padrão para a imagem, caso nenhum arquivo tenha sido enviado
-        $imagem = '';
-    }
-
-    // Insere os valores na tabela "produtos" incluindo a imagem
-    $sql = "INSERT INTO produto(nome, descricao, quantidade, preco, imagem) VALUES ('$nome','$descricao','$quantidade', '$preco', '$imagem')";
-    if (mysqli_query($conexao, $sql)) {
-        header("Location: lista_produtos.php");
-    } else {
-        echo "Erro ao cadastrar produto: " . mysqli_error($conexao);
-    }
-}
-
-
-// Fecha a conexão com o banco de dados
-mysqli_close($conexao);
 
 ?>
 
@@ -156,25 +124,63 @@ mysqli_close($conexao);
         </form>
     </div>
     <style>
-        body {
-            margin: 0;
-            padding-bottom: 60px;
-            /* altura do footer */
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
         }
 
-        footer {
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            height: 60px;
-            /* altura do footer */
-            background-color: #0b0262;
-            text-align: center;
-            color: whitesmoke;
+        .aaaaaa {
+            align-items: center;
+            justify-content: center;
         }
     </style>
+    <?php
+    function isCampoVazio($valor)
+    {
+        return !isset($valor) || trim($valor) === '';
+    }
 
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        $nome = $_POST['nome'];
+        $descricao = $_POST['descricao'];
+        $quantidade = $_POST['quantidade'];
+        $preco = $_POST['preco'];
+
+        // Verifica se um arquivo de imagem foi enviado
+        if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
+            // Lê o arquivo de imagem
+            $imagem = file_get_contents($_FILES['imagem']['tmp_name']);
+            // Escapa os caracteres especiais da imagem
+            $imagem = mysqli_real_escape_string($conexao, $imagem);
+        } else {
+            // Define um valor padrão para a imagem, caso nenhum arquivo tenha sido enviado
+            $imagem = '';
+        }
+
+        if (isCampoVazio($nome) || isCampoVazio($descricao) || isCampoVazio($quantidade) || isCampoVazio($preco)) {
+            echo '<div class="error-message aaaaaa" ">Por favor, preencha todos os campos.</div>';
+        }
+
+        // Verifica se a quantidade é negativa
+        else if ($quantidade < 0 || $preco < 0) {
+            echo '<div class="error-message aaaaaa" ">A quantidade em estoque e/ou o preço não pode ser menor que 0!</div>';
+        } else {
+            // Insere os valores na tabela "produtos" incluindo a imagem
+            $sql = "INSERT INTO produto(nome, descricao, quantidade, preco, imagem) VALUES ('$nome','$descricao','$quantidade', '$preco', '$imagem')";
+            if (mysqli_query($conexao, $sql)) {
+                header("Location: lista_produtos.php");
+            } else {
+                echo "Erro ao cadastrar produto: " . mysqli_error($conexao);
+            }
+        }
+    }
+    // Fecha a conexão com o banco de dados
+    mysqli_close($conexao);
+    ?>
 
     <?php
     include_once('footer.php');
