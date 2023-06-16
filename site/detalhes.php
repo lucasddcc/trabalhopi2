@@ -72,6 +72,28 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
         p {
             margin-bottom: 10px;
         }
+
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .error-message {
+            color: blue;
+            font-weight: bold;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .aaaaaa {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 
     <div class="container mt-4">
@@ -101,36 +123,71 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
                 echo '<p><strong>Preço:</strong> R$' . $preco . '</p>';
                 echo '<form action="carrinho.php" method="post">
                 <input type="hidden" name="codigo" value="' . $codigo . '">
-                <button type="submit" class="btn btn-primary">Adicionar ao Carrinho</button>
+                <button type="submit" class="btn btn-primary">Adicionar ao Carrinho</button><br><br><br>
                 </form>';
+
+                // Processar o envio do comentário
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    // Verificar se o comentário foi enviado
+                    if (isset($_POST["comentario"])) {
+                        $comentario = $_POST["comentario"];
+                        $codigo = $_POST["codigo"];
+
+                        // Inserir o comentário no banco de dados
+                        $sqlInserirComentario = "INSERT INTO comentarios (codigo_produto, comentario) VALUES ('$codigo', '$comentario')";
+                        $resultadoInserirComentario = mysqli_query($conexao, $sqlInserirComentario);
+
+                        // Verificar se o comentário foi inserido com sucesso
+                        if ($resultadoInserirComentario) {
+                            echo '<div class="error-message aaaaaa" ">comentário enviado com sucesso!</div>';
+                        } else {
+                            $mensagem = "Erro ao enviar o comentário.";
+                        }
+                    }
+                }
+
+                // Exibir a mensagem de sucesso ou erro
+                if (isset($mensagem)) {
+                    echo '<p>' . $mensagem . '</p>';
+                }
+
+                // Formulário de comentário
+                echo '<form method="POST">';
+                echo '<div class="form-group">';
+                echo '<label for="comentario">Comentário:</label>';
+                echo '<textarea class="form-control" id="comentario" name="comentario" rows="3"></textarea>';
+                echo '</div>';
+                echo '<input type="hidden" name="codigo" value="' . $codigo . '">';
+                echo '<button type="submit" class="btn btn-primary">Enviar Comentário</button>';
+                echo '</form>';
             } else {
                 echo '<p>Produto não encontrado.</p>';
             }
-
-            // Fecha a conexão com o banco de dados
-            mysqli_close($conexao);
         } else {
             echo '<p>Código do produto não fornecido.</p>';
         }
         ?>
+        <?php
+        // Verificar se há comentários para o produto
+        $sqlComentarios = "SELECT nome_usuario, comentario FROM comentarios WHERE codigo_produto = '$codigo'";
+        $resultadoComentarios = mysqli_query($conexao, $sqlComentarios);
+
+        if ($resultadoComentarios && mysqli_num_rows($resultadoComentarios) > 0) {
+            echo '<h3>Comentários:</h3>';
+
+            while ($rowComentario = mysqli_fetch_assoc($resultadoComentarios)) {
+                $nomeUsuario = $rowComentario['nome_usuario'];
+                $comentario = $rowComentario['comentario'];
+
+                echo '<p><strong>' . $nomeUsuario . ':</strong> ' . $comentario . '</p>';
+            }
+        } else {
+            echo '<p>Ainda não há comentários para este produto.</p>';
+        }
+        // Fecha a conexão com o banco de dados
+        mysqli_close($conexao);
+        ?>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- Scripts JavaScript do Bootstrap -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

@@ -70,7 +70,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $imagem = '';
     }
 
-
     // Insere os valores na tabela "produtos" incluindo a imagem
     $sql = "INSERT INTO produto(nome, descricao, quantidade, preco, imagem) VALUES ('$nome','$descricao','$quantidade', '$preco', '$imagem')";
     if (mysqli_query($conexao, $sql)) {
