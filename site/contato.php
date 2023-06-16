@@ -37,8 +37,8 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="script.js"></script>
-    <style>
+    <script src="js/script.js"></script>
+    <!-- <style>
         body {
             background-color: #5f7dcf;
         }
@@ -64,10 +64,10 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
             margin-top: 10px;
         }
 
-    </style>
+    </style> -->
 </head>
 
-<body>
+<body style="background-color: #5f7dcf;">
     <?php
     include_once('header.php');
     ?>

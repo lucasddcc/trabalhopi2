@@ -44,7 +44,7 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
     <?php
     include_once('header.php');
     ?>
-    <style>
+    <!-- <style>
         body {
             background-color: #f8f9fa;
 
@@ -94,9 +94,9 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
             align-items: center;
             justify-content: center;
         }
-    </style>
+    </style> -->
 
-    <div class="container mt-4">
+    <div class="container mt-5" style="width: 50rem; height: auto;">
         <?php
         // Verifica se o parâmetro 'codigo' foi enviado na URL
         if (isset($_GET['codigo'])) {
