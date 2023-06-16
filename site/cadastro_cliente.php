@@ -1,43 +1,6 @@
 <?php
 session_start();
 include_once('conectarBanco.php');
-function validateEmail($email)
-{
-    return filter_var($email, FILTER_VALIDATE_EMAIL);
-}
-
-include_once('conectarBanco.php');
-
-// Obtém os valores enviados pelo formulário
-$nome = isset($_POST["nome"]) ? $_POST["nome"] : "";
-$email = isset($_POST["email"]) ? $_POST["email"] : "";
-$senha = isset($_POST["senha"]) ? $_POST["senha"] : "";
-
-// Verifica se o formulário foi enviado
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST["username"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-
-    if (empty($username) || empty($email) || empty($password)) {
-        exit('Por favor, preencha todos os campos obrigatórios.');
-    }
-
-    if (!validateEmail($email)) {
-        exit('O e-mail informado é inválido.');
-    }
-
-    // Insere o usuário na tabela "users"
-    $sql = "INSERT INTO cliente (nome, email, senha) VALUES ('$username', '$email', '$password')";
-    if (mysqli_query($conexao, $sql)) {
-        echo "Usuário cadastrado com sucesso!";
-        header('Location: login.php');
-    } else {
-        echo "Erro ao cadastrar usuário: " . mysqli_error($conn);
-    }
-}
-
-
 if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) == true)) {
     unset($_SESSION['username']);
     unset($_SESSION['password']);
@@ -115,6 +78,57 @@ mysqli_close($conexao);
             <input type="button" class="btn btn-primary" value="Limpar" onclick="limparFormulario()">
         </form>
     </div>
+    <style>
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .aaaaaa{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+    <?php
+    function validateEmail($email)
+    {
+        return filter_var($email, FILTER_VALIDATE_EMAIL);
+    }
+    
+    include_once('conectarBanco.php');
+    
+    // Obtém os valores enviados pelo formulário
+    $nome = isset($_POST["nome"]) ? $_POST["nome"] : "";
+    $email = isset($_POST["email"]) ? $_POST["email"] : "";
+    $senha = isset($_POST["senha"]) ? $_POST["senha"] : "";
+    
+    // Verifica se o formulário foi enviado
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $username = $_POST["username"];
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+    
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && (empty($username) || empty($email) || empty($password))) {
+            echo '<div class="error-message aaaaaa" ">Por favor, preencha todos os campos obrigatórios.</div>';
+        }
+    
+        if (!validateEmail($email)) {
+            exit('<div class="error-message aaaaaa" ">Digite um email válido!</div>');
+        }
+    
+        // Insere o usuário na tabela "users"
+        $sql = "INSERT INTO cliente (nome, email, senha) VALUES ('$username', '$email', '$password')";
+        if (mysqli_query($conexao, $sql)) {
+            echo "Usuário cadastrado com sucesso!";
+            header('Location: login.php');
+        } else {
+            echo "Erro ao cadastrar usuário: " . mysqli_error($conn);
+        }
+    }
+    ?>
     <style>
         body {
             margin: 0;
