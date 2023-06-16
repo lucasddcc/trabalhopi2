@@ -56,12 +56,12 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 
 </head>
 
 <body style="background-color: #5f7dcf;">
-<?php
+    <?php
     include_once('header.php');
     ?>
     <div class="container mt-4" style="display: flex;">
@@ -165,47 +165,58 @@ if ((!isset($_SESSION['username']) == true) and (!isset($_SESSION['password']) =
 
     <div class="container">
         <?php
-        // Calcula o total de itens no carrinho
-        $totalItens = count($_SESSION['carrinho']);
-        // Calcula o preço total somado
-        $precoTotal = 0;
+        // Verifica se o carrinho está vazio
+        if (count($_SESSION['carrinho']) > 0) {
+            // Calcula o total de itens no carrinho
+            $totalItens = count($_SESSION['carrinho']);
+            // Calcula o preço total somado
+            $precoTotal = 0;
 
-        // Loop através dos produtos no carrinho para somar os preços
-        foreach ($_SESSION['carrinho'] as $produto) {
-            // Consulta o preço do produto no banco de dados
-            $sql = "SELECT preco FROM produto WHERE codigo = '$produto'";
-            $resultado = mysqli_query($conexao, $sql);
+            // Loop através dos produtos no carrinho para somar os preços
+            foreach ($_SESSION['carrinho'] as $produto) {
+                // Consulta o preço do produto no banco de dados
+                $sql = "SELECT preco FROM produto WHERE codigo = '$produto'";
+                $resultado = mysqli_query($conexao, $sql);
 
-            // Obtém o preço do resultado da consulta
-            $row = mysqli_fetch_assoc($resultado);
-            $preco = $row['preco'];
+                // Obtém o preço do resultado da consulta
+                $row = mysqli_fetch_assoc($resultado);
+                $preco = $row['preco'];
 
-            // Soma o preço ao total
-            $precoTotal += $preco;
+                // Soma o preço ao total
+                $precoTotal += $preco;
+            }
+            ?>
+
+            <div class="d-flex justify-content-between align-items-center" style="">
+                <h4>Total de Itens:
+                    <?php echo $totalItens; ?>
+                </h4>
+                <h4>Preço Total: R$
+                    <?php echo number_format($precoTotal, 2, ',', '.'); ?>
+                </h4>
+            </div>
+
+            <!-- Formulário para finalizar o pedido -->
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <a href="lista_produtos.php" class="btn btn-primary">Continuar Comprando</a>
+                </div>
+                <br>
+                <form action="carrinho.php" method="post">
+                    <input type="hidden" name="finalizar_pedido" value="1">
+                    <button type="submit" class="btn btn-primary">Finalizar Pedido</button>
+                </form>
+            </div>
+
+            <?php
+        } else {
+            echo '<div class="d-flex justify-content-center mt-4">
+            <a href="lista_produtos.php" class="btn btn-primary mr-2">Fazer outra compra</a>
+            <a href="contato.php" class="btn btn-primary">Avalie-nos</a>
+          </div>';
         }
         ?>
-
-        
-        <div class="d-flex justify-content-between align-items-center" style="">
-            <h4>Total de Itens:
-                <?php echo $totalItens; ?>
-            </h4>
-            <h4>Preço Total: R$
-                <?php echo number_format($precoTotal, 2, ',', '.'); ?>
-            </h4>
-        </div>
-
-        <!-- Formulário para finalizar o pedido -->
-        <div class="d-flex justify-content-between align-items-center">
-            <div>
-                <a href="lista_produtos.php" class="btn btn-primary">Continuar Comprando</a>
-            </div>
-            <br>
-            <form action="carrinho.php" method="post">
-                <input type="hidden" name="finalizar_pedido" value="1">
-                <button type="submit" class="btn btn-primary">Finalizar Pedido</button>
-            </form>
-        </div>
+    </div>
     </div>
 
 

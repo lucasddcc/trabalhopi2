@@ -23,9 +23,10 @@ include_once('conectarBanco.php');
 </head>
 
 <body style="background-color: #5f7dcf;">
-<?php
+    <?php
     include_once('header.php');
     ?>
+    
     <style>
         body {
             margin: 0;
