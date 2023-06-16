@@ -1,3 +1,7 @@
+<?php
+include_once('conectarBanco.php');
+?>
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary navbar bg-dark border-bottom border-bottom-dark"
     data-bs-theme="dark">
     <div class="container-fluid">
@@ -31,6 +35,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="busca_produto.php">Buscar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contato.php">Contato</a>
                     </li>
                 </ul>
             </div>

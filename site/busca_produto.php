@@ -126,22 +126,28 @@ if (isset($_POST['buscar'])) {
             $imagem = base64_encode($row['imagem']);
 
             // Exibe o produto
-            echo '<div class="col-md-4">
-                            <div class="card mb-4">
-                                <img class="card-img-top" style="max-width: 100%; max-height: 200px;" src="data:;base64,' . $imagem . '" alt="Imagem do Produto">
-                                    <div class="card-body">
-                                        <h5 class="card-title">' . $nome . '</h5>
-                                        <p class="card-text">Código: ' . $codigo . '</p>
-                                        <p class="card-text">' . $descricao . '</p>
-                                        <p class="card-text">Quantidade: ' . $quantidade . '</p>
-                                        <p class="card-text">Preço: R$' . $preco . ' </p>
-                                        <form action="carrinho.php" method="post">
-                                            <input type="hidden" name="codigo" value="' . $codigo . '">
-                                            <button type="submit" class="btn btn-primary">Adicionar ao Carrinho</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>';
+            echo '<div class="col-md-4 container mt-4">
+            <div class="card mb-4">
+                <img class="card-img-top" style="margin: 0 auto; justify-content: center; align-items: center; display: flex; height: 250px; width: 250px" src="data:;base64,' . $imagem . '" alt="Imagem do Produto">
+                    <div class="card-body">
+                        <h5 class="card-title">' . $nome . '</h5>
+                        <p class="card-text">Código: ' . $codigo . '</p>
+                        <p class="card-text">' . $descricao . '</p>
+                        <p class="card-text">Quantidade: ' . $quantidade . '</p>
+                        <p class="card-text">Preço: R$' . $preco . '</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                        <form action="carrinho.php" method="post">
+                        <input type="hidden" name="codigo" value="' . $codigo . '">
+                        <button type="submit" class="btn btn-primary">Adicionar ao Carrinho</button>
+                        </form>
+                        <form action="detalhes.php" method="get">
+                        <input type="hidden" name="codigo" value="' . $codigo . '">
+                        <button type="submit" class="btn btn-secondary">Ver Detalhes</button>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>';
         }
     } else {
         echo '<p class="no-results">Nenhum resultado encontrado.</p>';
